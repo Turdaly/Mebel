@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
+    <input class="form-control me-2" name="q" type="search" placeholder="Искать" aria-label="Search" id="search_id">
+    <button class="btn btn-outline-success" type="submit" onclick="search">Поиск</button>
+</form> 
+<div class="container">
+  {% for jihaz in jihazs %}
+    <img src="{{ jihaz.image.url }}" alt="jihaz" style="height:300px; weight: 250px;">
+    <div class="box-element jihaz">
+        <p>{{ jihaz.name }}</p>
+        <h6><strong> Цена: {{ jihaz.price }} тг </strong></h6>
+        <hr>
+        <a href="{% url 'jihaz_detail' jihaz.id %}">
+            <button class="move-right">Подробнее</button>
+        </a>
+        <br><br>
+    </div>
+  {% endfor %}      
+</div>
+
+{% endblock content %}

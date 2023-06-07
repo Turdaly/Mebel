@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jihaz">
+    <img src="{{ jihaz.image.url }}" alt="jihaz" style="height:300px; weight: 250px;">
+    <ul>
+        <p>{{ jihaz.name }}</p>
+    <li>Цена: {{ jihaz.price }} тг</li>
+    <br>
+    <a href="{% url 'jihaz_detail' jihaz.id %}">
+        <button class="move-right">Подробнее</button>
+    </a>
+</div>
+
+    
+{% endblock content %}

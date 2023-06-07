@@ -1,0 +1,18 @@
+{% for item in cart_items %}
+    <div>
+        <h3>{{ item.jihaz.name }}</h3>
+        <p>Количество: {{ item.quantity }}</p>
+        <p>Цена: {{ item.jihaz.price }} тенге</p>
+        <a href="{% url 'remove_from_cart' item.id %}"> 
+            <button> Удалить из Корзины </button>
+        </a>
+    </div>
+{% empty %}
+    <p>Ваша корзина пуста.</p>
+{% endfor %}
+
+<p>Общая Цена: ${{ total_price }}</p>
+
+<a href="{% url 'jihaz' %}"> 
+    <button class="move-left"> Вернуться в каталог </button>
+</a> 

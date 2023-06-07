@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-3 text-left">
+                <h4 class="fw-bold">Username:</h4>
+                <p class="fw-semibold">First Name:</p>
+                <p class="fw-semibold">Last Name:</p>
+                <p class="fw-semibold">Phone Number:</p>
+            </div>
+            <div class="col-6 text-left">
+                <h4 class="fw-bold">{{ user }}</h4>
+                <p class="fw-semibold">{{ klient.name }}</p>
+                <p class="fw-semibold">{{ klient.surname }}</p>
+                <p class="fw-semibold">{{ klient.number }}</p>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    
+{% endblock content %}

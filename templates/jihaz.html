@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
+    <input class="form-control me-2" name="q" type="search" placeholder="Искать" aria-label="Search" id="search_id">
+    <button class="btn btn-outline-success" type="submit" onclick="search">Поиск</button>
+</form> 
+<div class="row">
+    <hr>
+    <a class="list-group-item" href="{% url 'jihaz'%}">ALL</a>
+    {% for categoria in categories%}
+        <li class="list-group-item"> 
+            <a href="{% url 'jihaz' %}?category={{ categoria.type}}">{{ categoria.type }}</a>
+        </li> 
+    {% endfor%}
+</div> 
+<br>
+<div class="container">
+    {% for jihaz in jihazs %}
+        <img src="{{ jihaz.image.url }}" alt="jihaz" style="height:300px; weight: 250px;">
+        <div class="box-element jihaz">
+            <p>{{ jihaz.name }}</p>
+            <h6><strong> Цена: {{ jihaz.price }} тг </strong></h6>
+            <hr>
+            <a href="{% url 'jihaz_detail' jihaz.id %}">
+                <button class="move-right">Подробнее</button>
+            </a>
+            <br><br>
+            
+        </div>
+    {% endfor %}      
+</div>
+
+    {% if user.is_superuser %}
+    <a href="{% url 'jihaz_create' %}"> 
+        <button style="background-color:#4CAF50;  position: absolute; right:50px;"> Создать Мебель </button>
+    </a>
+    {% endif %}
+    </div>
+
+
+{% endblock content %}

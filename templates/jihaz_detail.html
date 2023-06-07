@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="move-right">
+    <h4>{{ jihaz.name}}<h4>
+  </div>
+  <div class="row">
+    <div class="">
+      <img src="{{ jihaz.image.url }}" alt="jihaz" style="height:370px; weight: 320px;">
+    </div>
+    <div class="col-6 text-left">
+      <p>{{ jihaz.price }} тенге</p>
+      <p>Характеристика:</p>
+      <p></p>
+      <p>Тип: {{ jihaz.categoria.type }}</p>
+      <p>Ширина: {{ jihaz.width }}</p>
+      <p>Высота: {{ jihaz.height }}</p>
+      <p>Глубина: {{ jihaz.deep }}</p>
+      <p>Материялы: {{ jihaz.material }}</p>
+    </div>
+  </div>
+
+    {% if user.is_superuser %}
+    <br>
+    <a href="{% url 'jihaz_update' jihaz.id %}"> 
+      <button> Изменить Мебель </button>
+    </a>
+    <a href="{% url 'jihaz_delete' jihaz.id %}"> 
+      <button class="move-right"> Удалить Мебель </button>
+    </a>  
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'add_to_cart' jihaz.id %}"> 
+      <button class="move-right"> Добавить в Корзину </button> 
+    </a>
+    <a href="{% url 'jihaz' %}"> 
+      <button class="move-left"> Вернуться в каталог </button>
+    </a> 
+    {% endif %}
+    
+
+    <style>
+        .move-right {
+            position: relative;
+            left: 10px;
+          }
+        .move-left {
+          position: relative;
+          left: 200px;
+        }
+
+          .image-with-text img {
+            float: left;
+            margin-right: 60px;
+          }
+          
+          .text p {
+            margin-left: 60px;
+          }
+    </style>
+    
+{% endblock content %}
