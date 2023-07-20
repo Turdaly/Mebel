@@ -52,13 +52,30 @@ class JihazDeleteView(DeleteView):
     success_url = reverse_lazy('jihaz') 
 
 def ProfileView(request):
-    klient = Klient.objects.get(user_id=request.user)
+    try:
+        klient = User.objects.get(username=request.user.username)
+    except User.DoesNotExist:
+        klient = None
     return render(request=request, 
             template_name="profile.html",
             context={
                 "klient": klient
             })
-    
+
+def profile_update(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
+        # Update the user's first_name and last_name
+        request.user.first_name = first_name
+        request.user.last_name = last_name
+        request.user.save()
+
+    return render(request, 'profile_update.html')
+
+
+
 def SortPriceView(request):
     jihazs = Jihaz.objects.order_by('price')
     

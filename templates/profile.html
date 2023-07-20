@@ -6,15 +6,20 @@
                 <h4 class="fw-bold">Username:</h4>
                 <p class="fw-semibold">First Name:</p>
                 <p class="fw-semibold">Last Name:</p>
+                <p class="fw-semibold">Account:</p>
 
             </div>
             <div class="col-6 text-left">
-                <h4 class="fw-bold">{{ user }}</h4>
-                <p class="fw-semibold">{{ user.name }}</p>
-                <p class="fw-semibold">{{ user.surname }}</p>
+                <h4 class="fw-bold">{{ user.username }}</h4>
+                <p class="fw-semibold">{{ user.first_name }}</p>
+                <p class="fw-semibold">{{ user.last_name }}</p>
+                <p class="fw-semibold">{{ user.email }}</p>
 
             </div>
         </div>
+        <a href="{% url 'profile_update' %}">
+            Изменить Информация
+        </a>
     </div>
 
     

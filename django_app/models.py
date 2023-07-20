@@ -3,16 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-class Klient(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, null=False, blank=False)
-    surname = models.CharField(max_length=100, null=False, blank=False)
-    number = models.CharField(max_length=100, null=False, blank=False, unique=True)
-    
-    def __str__(self):
-        return str(self.name)
-    
-    
+
 class Categoria(models.Model):
     type = models.CharField(max_length=100, null=False, blank=False)
     
