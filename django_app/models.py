@@ -17,8 +17,8 @@ class Categoria(models.Model):
     type = models.CharField(max_length=100, null=False, blank=False)
     
     def __str__(self):
-        return str(self.name)
-    
+        return str(self.type)
+
 class Jihaz(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
     price = models.PositiveIntegerField(null=False, blank=False)
@@ -26,8 +26,9 @@ class Jihaz(models.Model):
     width = models.PositiveIntegerField(null=False, blank=False)
     height = models.PositiveIntegerField(null=False, blank=False)
     deep = models.PositiveIntegerField(default=0, null=False, blank=False)
-    material = models.CharField(max_length=100, null=False, blank=False, unique=True)
+    material = models.CharField(max_length=100, null=False, blank=False)
     image = models.ImageField(default='default.jpg', null=False, blank=False)
+    
     def __str__(self):
         return str(self.name)
     

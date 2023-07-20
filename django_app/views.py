@@ -9,6 +9,10 @@ from .models import *
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.shortcuts import redirect
+
+from .permissions import IsAdminOrReadOnly
+
+
 # Create your views here.
 
 def JihazListView(request):
@@ -117,3 +121,27 @@ def cart(request):
                       'cart_items': cart_items, 
                       'total_price': total_price
                       })
+    
+
+from rest_framework.response import  Response
+from rest_framework.views import APIView
+from .serializers import JihazSerializer
+from rest_framework import viewsets, generics
+from rest_framework.permissions import *
+
+
+class JihazAPIList(generics.ListCreateAPIView):
+    queryset = Jihaz.objects.all()
+    serializer_class = JihazSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+class JihazAPIUpdate(generics.RetrieveUpdateAPIView):
+    queryset = Jihaz.objects.all()
+    serializer_class = JihazSerializer
+    permission_classes = (IsAdminOrReadOnly, )
+
+class JihazAPIDestroy(generics.RetrieveDestroyAPIView):
+    queryset = Jihaz.objects.all()
+    serializer_class = JihazSerializer
+    permission_classes = (IsAdminOrReadOnly, )
+
